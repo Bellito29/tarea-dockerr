@@ -1,0 +1,52 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Lista de Roles</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/header.css}" />
+        <link rel="stylesheet" th:href="@{/listUsers.css}" />
+    </head>
+    <body>
+        <div th:replace="~{components/header :: header}"></div>
+        
+        <div class="container">
+            <div class="top-bar">
+                <h2>Lista de Roles</h2>
+                <div class="top-actions">
+                    <a th:href="@{/mvc/roles/addRole}" class="btn-primary">+ Nuevo Rol</a>
+                    <a th:href="@{/mvc/roles/assign-user-role}" class="btn-secondary">Asociar roles a usuarios</a>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre del Rol</th>
+                        <th>Descripción</th>
+                        <th>Usuarios Asignados</th>
+                        <th>Permisos Configurados</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="role : ${roles}">
+                        <td th:text="${role.id}">1</td>
+                        <td th:text="${role.name}">ADMIN</td>
+                        <td th:text="${role.description}">Acceso total al sistema</td>
+                        <td th:text="${role.users != null ? #lists.size(role.users) : 0}">0</td>
+                        <td th:text="${role.rolePermissions != null ? #lists.size(role.rolePermissions) : 0}">0</td>
+                        <td>
+                            <a th:href="@{/mvc/roles/{roleId}/permissions(roleId=${role.id})}" class="table-action">
+                                Asociar permisos
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:replace="~{components/footer :: footer}"></div>
+    </body>
+</html>

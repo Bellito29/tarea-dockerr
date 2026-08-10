@@ -1,0 +1,47 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Administración de Usuarios</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/header.css}" />
+        <link rel="stylesheet" th:href="@{/homeAdmin.css}" />
+    </head>
+    <body>
+        <div th:replace="~{components/header :: header}"></div>
+
+        <div class="container">
+            <h1>Administración de usuarios</h1>
+            <ul class="admin-menu">
+                <li>
+                    <a th:href="@{/mvc/users/list}">Ver todos los usuarios</a>
+                </li>
+                <li>
+                    <a th:href="@{/mvc/users/addUser}">Crear usuario</a>
+                </li>
+
+            </ul>
+
+            <hr /> <h3>Gestión de Roles</h3>
+                <ul class="admin-menu">
+                    <li>
+                        <a th:href="@{/mvc/roles/list}">Listar roles existentes</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/mvc/roles/addRole}">Crear nuevo rol</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/mvc/roles/assign-user-role}">asignar role a usuario</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/mvc/roles/delete}">Borrar roles</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/mvc/roles/unassign-user-role}">quitar roles a usuario</a>
+                    </li>
+                </ul>
+        </div>
+
+        <div th:replace="~{components/footer :: footer}"></div>
+    </body>
+</html>

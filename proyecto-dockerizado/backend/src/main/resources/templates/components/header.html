@@ -1,0 +1,15 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <header th:fragment="header">
+            <div class="header-inner">
+                <a th:href="@{/}" class="header-logo">Mi App</a>
+                <nav class="header-nav">
+                    <a th:href="@{/mvc/admin}">Admin</a>
+                    <a th:href="@{/mvc/users}">Usuarios</a>
+                    <a th:href="@{/logout}">Cerrar sesión</a>
+                </nav>
+            </div>
+        </header>
+    </body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Quitar rol a usuario</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/header.css}" />
+        <link rel="stylesheet" th:href="@{/assignPermissions.css}" />
+    </head>
+    <body>
+        <div th:replace="~{components/header :: header}"></div>
+
+        <div class="container">
+            <h1>Quitar rol a usuario</h1>
+
+            <form th:action="@{/mvc/roles/unassign-user-role}" method="post">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="userId">Usuario</label>
+                        <select id="userId" name="userId" required>
+                            <option value="">Seleccione un usuario</option>
+                            <option th:each="user : ${users}"
+                                    th:value="${user.id}"
+                                    th:text="${user.fullName}"
+                                    th:disabled="${user.role == null}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Quitar rol</button>
+                    <a th:href="@{/mvc/home}" class="btn-cancel">Volver</a>
+                </div>
+            </form>
+
+            <h2>Usuarios con rol asignado</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Rol actual</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}" th:if="${user.role != null}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.fullName}"></td>
+                        <td th:text="${user.role.name}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:replace="~{components/footer :: footer}"></div>
+    </body>
+</html>

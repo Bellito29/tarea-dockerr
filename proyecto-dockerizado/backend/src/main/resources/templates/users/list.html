@@ -1,0 +1,43 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Lista de Usuarios</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/header.css}" />
+        <link rel="stylesheet" th:href="@{/listUsers.css}" />
+    </head>
+    <body>
+        <div th:replace="~{components/header :: header}"></div>
+        <div class="container">
+            <h2>Lista de Usuarios</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Peso</th>
+                        <th>Altura</th>
+                        <th>Número de sesiones</th>
+                        <th>Número de participaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}">1</td>
+                        <td th:text="${user.fullName}">John Doe</td>
+                        <td th:text="${user.birthDate}">00-00-0000</td>
+                        <td th:text="${user.weight}">00</td>
+                        <td th:text="${user.height}">00</td>
+                        <td th:text="${user.sesions != null ? #lists.size(user.sesions) : 0}"></td>
+                        <td th:text="${#lists.size(user.userParticipations)}">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:replace="~{components/footer :: footer}"></div>
+
+    </body>
+        
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Asociar permisos al rol</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/header.css}" />
+        <link rel="stylesheet" th:href="@{/assignPermissions.css}" />
+    </head>
+    <body>
+        <div th:replace="~{components/header :: header}"></div>
+
+        <div class="container">
+            <h1>Asociar permisos al rol</h1>
+
+            <div class="info-box">
+                <p><strong>Rol:</strong> <span th:text="${role.name}">ADMIN</span></p>
+                <p><strong>Descripción:</strong> <span th:text="${role.description}">Descripción del rol</span></p>
+            </div>
+
+            <form th:action="@{/mvc/roles/{roleId}/permissions(roleId=${role.id})}" method="post">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="permissionId">Permiso</label>
+                        <select id="permissionId" name="permissionId" required>
+                            <option value="">Seleccione un permiso</option>
+                            <option th:each="permission : ${permissions}"
+                                    th:value="${permission.id}"
+                                    th:text="${permission.name}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Asociar permiso</button>
+                    <a th:href="@{/mvc/roles/list}" class="btn-cancel">Volver</a>
+                </div>
+            </form>
+
+            <h2>Permisos actualmente asociados</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID relación</th>
+                        <th>ID permiso</th>
+                        <th>Nombre del permiso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="rp : ${assignedPermissions}">
+                        <td th:text="${rp.id}">1</td>
+                        <td th:text="${rp.permission.id}">1</td>
+                        <td th:text="${rp.permission.name}">ver-usuario</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:replace="~{components/footer :: footer}"></div>
+    </body>
+</html>

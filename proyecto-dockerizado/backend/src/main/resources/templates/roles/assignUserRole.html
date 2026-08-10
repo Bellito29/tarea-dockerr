@@ -1,0 +1,69 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Asociar roles a usuarios</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/header.css}" />
+        <link rel="stylesheet" th:href="@{/assignUserRole.css}" />
+    </head>
+    <body>
+        <div th:replace="~{components/header :: header}"></div>
+
+        <div class="container">
+            <h1>Asociar roles a usuarios</h1>
+
+            <form th:action="@{/mvc/roles/assign-user-role}" method="post">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="userId">Usuario</label>
+                        <select id="userId" name="userId" required>
+                            <option value="">Seleccione un usuario</option>
+                            <option th:each="user : ${users}"
+                                    th:value="${user.id}"
+                                    th:text="${user.fullName}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roleId">Rol</label>
+                        <select id="roleId" name="roleId" required>
+                            <option value="">Seleccione un rol</option>
+                            <option th:each="role : ${roles}"
+                                    th:value="${role.id}"
+                                    th:text="${role.name}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Asignar rol</button>
+                    <a th:href="@{/mvc/roles/list}" class="btn-cancel">Volver</a>
+                </div>
+            </form>
+
+            <h2>Usuarios y rol actual</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID usuario</th>
+                        <th>Nombre</th>
+                        <th>Rol actual</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}">1</td>
+                        <td th:text="${user.fullName}">Juan Pablo</td>
+                        <td th:text="${user.role != null ? user.role.name : 'Sin rol'}">ADMIN</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:replace="~{components/footer :: footer}"></div>
+    </body>
+</html>

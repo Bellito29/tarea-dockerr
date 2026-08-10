@@ -1,0 +1,63 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Agregar Usuario</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/header.css}" />
+        <link rel="stylesheet" th:href="@{/addUser.css}" />
+    </head>
+    <body>
+        <div th:replace="~{components/header :: header}"></div>
+
+        <div class="container">
+            <h1>Agregar usuario</h1>
+            <form th:action="@{/mvc/users/addUser}" th:object="${user}" method="post">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="fullName">Nombre Completo</label>
+                        <input type="text" id="fullName" th:field="*{fullName}" maxlength="100" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthDate">Fecha de Nacimiento</label>
+                        <input type="date" id="birthDate" th:field="*{birthDate}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weight">Peso</label>
+                        <input type="number" id="weight" th:field="*{weight}" step="0.1" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role">Rol</label>
+                        <select id="role" th:field="*{role}">
+                            <option th:each="role : ${roles}"
+                                    th:value="${role.id}"
+                                    th:text="${role.name}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="height">Altura</label>
+                        <input type="number" id="height" th:field="*{height}" step="0.01" />
+                    </div>
+
+                    <div class="form-group"></div>
+
+                    <div class="form-group">
+                        <label for="password_hash">Contraseña</label>
+                        <input type="password" id="password_hash" th:field="*{password}" maxlength="255" required/>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Aceptar</button>
+                </div>
+            </form>
+        </div>
+
+        <div th:replace="~{components/footer :: footer}"></div>
+    </body>
+</html>

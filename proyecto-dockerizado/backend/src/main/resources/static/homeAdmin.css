@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ebebeb;
+    font-family: sans-serif;
+}
+
+.container {
+    max-width: 900px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+}
+
+.container h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    color: #111;
+}
+
+.admin-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.admin-menu li {
+    margin-bottom: 0.4rem;
+}
+
+.admin-menu li a {
+    font-size: 1rem;
+    color: #111;
+    text-decoration: none;
+}
+
+.admin-menu li a:hover {
+    text-decoration: underline;
+}

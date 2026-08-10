@@ -1,0 +1,39 @@
+header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #d0d0d0;
+    padding: 0 1.5rem;
+    height: 52px;
+    display: flex;
+    align-items: center;
+}
+
+.header-inner {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-logo {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111;
+    text-decoration: none;
+}
+
+.header-nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.header-nav a {
+    font-size: 0.9rem;
+    color: #333;
+    text-decoration: none;
+}
+
+.header-nav a:hover {
+    text-decoration: underline;
+}

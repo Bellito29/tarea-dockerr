@@ -1,0 +1,41 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Agregar Rol</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/header.css}" />
+        <link rel="stylesheet" th:href="@{/addUser.css}" />
+    </head>
+    <body>
+        <div th:replace="~{components/header :: header}"></div>
+
+        <div class="container">
+            <h1>Crear Nuevo Rol</h1>
+            <form th:action="@{/mvc/roles/save}" th:object="${role}" method="post">
+                <div class="form-grid">
+                    
+                    <div class="form-group">
+                        <label for="name">Nombre del Rol</label>
+                        <input type="text" id="name" th:field="*{name}" 
+                               placeholder="Ej: ROLE_ADMIN" required maxlength="50" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Descripción</label>
+                        <input type="text" id="description" th:field="*{description}" 
+                               placeholder="Descripción breve de los permisos" maxlength="255" />
+                    </div>
+
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Guardar Rol</button>
+                    <a th:href="@{/mvc/roles/list}" style="margin-left: 10px; text-decoration: none; color: #666;">Cancelar</a>
+                </div>
+            </form>
+        </div>
+
+        <div th:replace="~{components/footer :: footer}"></div>
+    </body>
+</html>
